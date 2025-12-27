@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
-session_start();
+
 $conn = getDBConnection();
 
 // Get Search Inputs
@@ -43,11 +43,13 @@ $results = $stmt->get_result();
 </head>
 <body>
     <div class="container">
-        <h1>🔍 Search Books</h1>
-        <nav>
-            <a href="index.php">Home</a> | 
-            <?php echo isAdmin() ? '<a href="admin_dashboard.php">Dashboard</a>' : '<a href="customer_dashboard.php">My Account</a>'; ?>
-        </nav>
+        <div class="header">
+            <h1>🔍 Search Books</h1>
+            <nav>
+                <a href="index.php">Home</a>
+                <?php echo isAdmin() ? '<a href="admin_dashboard.php">Dashboard</a>' : '<a href="customer_dashboard.php">My Account</a>'; ?>
+            </nav>
+        </div>
 
         <div class="report-section" style="background: #f4f4f4; padding: 20px; border-radius: 8px;">
             <form method="GET" action="search.php">

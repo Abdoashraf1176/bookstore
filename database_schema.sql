@@ -1,4 +1,3 @@
--- Create Database
 CREATE DATABASE IF NOT EXISTS bookstore_system;
 USE bookstore_system;
 
@@ -125,29 +124,26 @@ CREATE TRIGGER after_book_stock_update
 AFTER UPDATE ON books
 FOR EACH ROW
 BEGIN
-    -- Check if quantity dropped from above threshold to below threshold
     IF OLD.quantity_in_stock >= OLD.threshold_quantity 
        AND NEW.quantity_in_stock < NEW.threshold_quantity THEN
-        -- Place order with constant quantity (e.g., 50 books)
         INSERT INTO publisher_orders (isbn, quantity, status)
         VALUES (NEW.isbn, 50, 'Pending');
     END IF;
 END//
 DELIMITER ;
 
--- Insert Sample Admin User (password: admin123)
+
+
 INSERT INTO users (username, password, first_name, last_name, email, user_type)
 VALUES ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
         'Admin', 'User', 'admin@bookstore.com', 'Admin');
 
--- Insert Sample Publishers
 INSERT INTO publishers (name, address, telephone) VALUES
 ('Penguin Random House', '1745 Broadway, New York, NY 10019', '+1-212-782-9000'),
 ('HarperCollins', '195 Broadway, New York, NY 10007', '+1-212-207-7000'),
 ('Simon & Schuster', '1230 Avenue of the Americas, New York, NY 10020', '+1-212-698-7000'),
 ('Macmillan Publishers', '120 Broadway, New York, NY 10271', '+1-646-307-5151');
 
--- Insert Sample Authors
 INSERT INTO authors (name) VALUES
 ('Stephen Hawking'),
 ('Carl Sagan'),
@@ -155,7 +151,6 @@ INSERT INTO authors (name) VALUES
 ('Leonardo da Vinci'),
 ('Karen Armstrong');
 
--- Insert Sample Books
 INSERT INTO books (isbn, title, publisher_id, publication_year, selling_price, category, quantity_in_stock, threshold_quantity)
 VALUES
 ('9780553380163', 'A Brief History of Time', 1, 1988, 18.99, 'Science', 45, 10),
@@ -164,7 +159,6 @@ VALUES
 ('9781501139154', 'The Art Book', 3, 2016, 35.00, 'Art', 20, 8),
 ('9780679783275', 'A History of God', 4, 1993, 19.99, 'Religion', 25, 10);
 
--- Link Books to Authors
 INSERT INTO book_authors (isbn, author_id) VALUES
 ('9780553380163', 1),
 ('9780345539434', 2),

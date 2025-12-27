@@ -14,7 +14,7 @@ $sql = "SELECT b.*, p.name as publisher_name, GROUP_CONCAT(a.name SEPARATOR ', '
         WHERE 1=1";
 
 if ($search) {
-    $sql .= " AND (b.title LIKE '%$search%' OR b.isbn LIKE '%$search%' OR a.name LIKE '%$search%')";
+    $sql .= " AND (b.title LIKE '%$search%' OR b.isbn LIKE '%$search%' OR a.name LIKE '%$search%' OR p.name LIKE '%$search%')";
 }
 if ($category) {
     $sql .= " AND b.category = '$category'";

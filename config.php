@@ -4,7 +4,7 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'bookstore_system');
-define('DB_PORT', '3307'); // MySQL default port
+define('DB_PORT', '3306');
 
 // Create connection
 function getDBConnection() {
