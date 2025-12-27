@@ -50,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $i_stmt->execute();
 
                 // Deduct Stock
-                $stock_sql = "UPDATE books SET quantity_in_stock = quantity_in_stock - ? WHERE isbn = ?";
-                $s_stmt = $conn->prepare($stock_sql);
-                $s_stmt->bind_param("is", $item['quantity'], $item['isbn']);
-                $s_stmt->execute();
+                // $stock_sql = "UPDATE books SET quantity_in_stock = quantity_in_stock - ? WHERE isbn = ?";
+                // $s_stmt = $conn->prepare($stock_sql);
+                // $s_stmt->bind_param("is", $item['quantity'], $item['isbn']);
+                // $s_stmt->execute();
             }
 
             // 3. Clear Cart
